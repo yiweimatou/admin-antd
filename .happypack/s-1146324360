@@ -1,0 +1,182 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _css = require('antd/lib/button/style/css');
+
+var _button = require('antd/lib/button');
+
+var _button2 = _interopRequireDefault(_button);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _redboxReact2 = require('redbox-react');
+
+var _redboxReact3 = _interopRequireDefault(_redboxReact2);
+
+var _reactTransformCatchErrors3 = require('react-transform-catch-errors');
+
+var _reactTransformCatchErrors4 = _interopRequireDefault(_reactTransformCatchErrors3);
+
+var _react2 = require('react');
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _reactTransformHmr3 = require('react-transform-hmr');
+
+var _reactTransformHmr4 = _interopRequireDefault(_reactTransformHmr3);
+
+require('./index.css');
+
+var _NavMenu = require('../NavMenu');
+
+var _NavMenu2 = _interopRequireDefault(_NavMenu);
+
+var _Login = require('../Login');
+
+var _Login2 = _interopRequireDefault(_Login);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _components = {
+    Main: {
+        displayName: 'Main'
+    }
+};
+
+var _reactTransformHmr2 = (0, _reactTransformHmr4.default)({
+    filename: 'D:/github/admin-antd/src/components/Main/index.js',
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+});
+
+var _reactTransformCatchErrors2 = (0, _reactTransformCatchErrors4.default)({
+    filename: 'D:/github/admin-antd/src/components/Main/index.js',
+    components: _components,
+    locals: [],
+    imports: [_react3.default, _redboxReact3.default]
+});
+
+function _wrapComponent(id) {
+    return function (Component) {
+        return _reactTransformHmr2(_reactTransformCatchErrors2(Component, id), id);
+    };
+}
+
+var Main = _wrapComponent('Main')(function (_Component) {
+    (0, _inherits3.default)(Main, _Component);
+
+    function Main() {
+        (0, _classCallCheck3.default)(this, Main);
+        return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Main).apply(this, arguments));
+    }
+
+    (0, _createClass3.default)(Main, [{
+        key: 'render',
+        value: function render() {
+            var _props = this.props;
+            var auth = _props.auth;
+            var children = _props.children;
+            var login = _props.login;
+            var logout = _props.logout;
+
+            return _react3.default.createElement(
+                'div',
+                { className: 'ant-layout-topaside' },
+                _react3.default.createElement(_Login2.default, {
+                    isAuthed: auth && auth.isAuthed,
+                    loading: auth && auth.loading,
+                    login: login
+                }),
+                _react3.default.createElement(
+                    'div',
+                    { className: 'ant-layout-header' },
+                    _react3.default.createElement(
+                        'div',
+                        { className: 'ant-layout-wrapper' },
+                        _react3.default.createElement(
+                            'div',
+                            { className: 'ant-layout-logo' },
+                            _react3.default.createElement(
+                                'h2',
+                                null,
+                                '医卫码头管理后台'
+                            )
+                        ),
+                        _react3.default.createElement(
+                            'div',
+                            { className: 'ant-layout-login' },
+                            _react3.default.createElement(
+                                _button2.default,
+                                {
+                                    icon: 'logout',
+                                    type: 'ghost',
+                                    onClick: logout
+                                },
+                                auth && auth.user ? auth.user.nickname || auth.user.cname || auth.user.mobile : ''
+                            )
+                        )
+                    )
+                ),
+                _react3.default.createElement(
+                    'div',
+                    { className: 'ant-layout-wrapper' },
+                    _react3.default.createElement(
+                        'div',
+                        { className: 'ant-layout-container' },
+                        _react3.default.createElement(
+                            'aside',
+                            { className: 'ant-layout-sider' },
+                            _react3.default.createElement(_NavMenu2.default, { lessons: auth && auth.user && auth.user.lessons })
+                        ),
+                        _react3.default.createElement(
+                            'div',
+                            { className: 'ant-layout-content' },
+                            _react3.default.createElement(
+                                'div',
+                                { style: { clear: 'both' } },
+                                children
+                            )
+                        )
+                    ),
+                    _react3.default.createElement(
+                        'div',
+                        { className: 'ant-layout-footer' },
+                        '版权所有 © 2016 由医卫里技术部支持'
+                    )
+                )
+            );
+        }
+    }]);
+    return Main;
+}(_react2.Component));
+
+Main.propTypes = {
+    children: _react2.PropTypes.element,
+    auth: _react2.PropTypes.object.isRequired,
+    login: _react2.PropTypes.func.isRequired,
+    logout: _react2.PropTypes.func.isRequired
+};
+
+exports.default = Main;

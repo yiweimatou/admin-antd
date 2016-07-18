@@ -1,0 +1,56 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _redux = require('redux');
+
+var _reactRouterRedux = require('react-router-redux');
+
+var _reduxSaga = require('redux-saga');
+
+var _reduxSaga2 = _interopRequireDefault(_reduxSaga);
+
+var _SagaManager = require('../sagas/SagaManager');
+
+var _SagaManager2 = _interopRequireDefault(_SagaManager);
+
+var _reducers = require('../reducers');
+
+var _reducers2 = _interopRequireDefault(_reducers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+    var initialState = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+    var history = arguments[1];
+
+    var middleware = (0, _reactRouterRedux.routerMiddleware)(history);
+    var sagaMiddleware = (0, _reduxSaga2.default)();
+    var enhancer = (0, _redux.compose)((0, _redux.applyMiddleware)(sagaMiddleware), (0, _redux.applyMiddleware)(middleware), window.devToolsExtension ? window.devToolsExtension() : function (f) {
+        return f;
+    });
+    var store = (0, _redux.createStore)((0, _redux.combineReducers)((0, _extends3.default)({}, _reducers2.default, {
+        routing: _reactRouterRedux.routerReducer
+    })), initialState, enhancer);
+    _SagaManager2.default.startSagas(sagaMiddleware);
+    if (module.hot) {
+        module.hot.accept('../reducers', function () {
+            var reducers = require('../reducers');
+            var combinedReducers = (0, _redux.combineReducers)((0, _extends3.default)({}, reducers, {
+                routing: _reactRouterRedux.routerReducer
+            }));
+            store.replaceReducer(combinedReducers);
+        });
+        module.hot.accept('../sagas/SagaManager', function () {
+            _SagaManager2.default.cancelSagas(store);
+            require('../sagas/SagaManager').default.startSagas(sagaMiddleware);
+        });
+    }
+    return store;
+};

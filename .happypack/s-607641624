@@ -1,0 +1,214 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _css = require('antd/lib/modal/style/css');
+
+var _modal = require('antd/lib/modal');
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _css2 = require('antd/lib/input/style/css');
+
+var _input = require('antd/lib/input');
+
+var _input2 = _interopRequireDefault(_input);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _css3 = require('antd/lib/button/style/css');
+
+var _button = require('antd/lib/button');
+
+var _button2 = _interopRequireDefault(_button);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _css4 = require('antd/lib/form/style/css');
+
+var _form = require('antd/lib/form');
+
+var _form2 = _interopRequireDefault(_form);
+
+var _redboxReact2 = require('redbox-react');
+
+var _redboxReact3 = _interopRequireDefault(_redboxReact2);
+
+var _reactTransformCatchErrors3 = require('react-transform-catch-errors');
+
+var _reactTransformCatchErrors4 = _interopRequireDefault(_reactTransformCatchErrors3);
+
+var _react2 = require('react');
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _reactTransformHmr3 = require('react-transform-hmr');
+
+var _reactTransformHmr4 = _interopRequireDefault(_reactTransformHmr3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _components = {
+    Login: {
+        displayName: 'Login'
+    }
+};
+
+var _reactTransformHmr2 = (0, _reactTransformHmr4.default)({
+    filename: 'D:/github/admin-antd/src/components/Login/index.js',
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+});
+
+var _reactTransformCatchErrors2 = (0, _reactTransformCatchErrors4.default)({
+    filename: 'D:/github/admin-antd/src/components/Login/index.js',
+    components: _components,
+    locals: [],
+    imports: [_react3.default, _redboxReact3.default]
+});
+
+function _wrapComponent(id) {
+    return function (Component) {
+        return _reactTransformHmr2(_reactTransformCatchErrors2(Component, id), id);
+    };
+}
+
+var FormItem = _form2.default.Item;
+
+var formItemLayout = {
+    labelCol: { span: 4 },
+    wrapperCol: { span: 12 }
+};
+var mobileChecker = function mobileChecker(rule, value, callback) {
+    // if( !isMobile(value) ){
+    //     callback(new Error('请输入合法的手机号码'))
+    // }else{
+    //     callback()
+    // }
+};
+
+var Login = _wrapComponent('Login')(function (_Component) {
+    (0, _inherits3.default)(Login, _Component);
+
+    function Login() {
+        var _Object$getPrototypeO;
+
+        var _temp2, _this, _ret;
+
+        (0, _classCallCheck3.default)(this, Login);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp2 = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Login)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.submitHandler = function (e) {
+            e.preventDefault();
+            _this.props.form.validateFields(function (errors, values) {
+                if (errors) {
+                    return;
+                }
+                _this.props.login(values);
+            });
+        }, _temp2), (0, _possibleConstructorReturn3.default)(_this, _ret);
+    }
+
+    (0, _createClass3.default)(Login, [{
+        key: 'render',
+        value: function render() {
+            var _props = this.props;
+            var loading = _props.loading;
+            var isAuthed = _props.isAuthed;
+            var form = _props.form;
+            var getFieldProps = form.getFieldProps;
+
+            var accountProps = getFieldProps('mobile', {
+                rules: [{
+                    required: true,
+                    message: '请输入正确的手机号码',
+                    validator: mobileChecker
+                }]
+            });
+            var passwordProps = getFieldProps('password', {
+                rules: [{
+                    required: true,
+                    message: '请输入密码'
+                }]
+            });
+            return _react3.default.createElement(
+                _modal2.default,
+                {
+                    title: '登录',
+                    visible: !isAuthed,
+                    closable: false,
+                    footer: _react3.default.createElement(
+                        _button2.default,
+                        {
+                            onClick: this.submitHandler,
+                            type: 'primary',
+                            loading: loading
+                        },
+                        '登录'
+                    )
+                },
+                _react3.default.createElement(
+                    _form2.default,
+                    { horizontal: true, form: form },
+                    _react3.default.createElement(
+                        FormItem,
+                        (0, _extends3.default)({}, formItemLayout, {
+                            label: '帐号',
+                            hasFeedback: true
+                        }),
+                        _react3.default.createElement(_input2.default, (0, _extends3.default)({
+                            type: 'text', autoComplete: 'off'
+                        }, accountProps))
+                    ),
+                    _react3.default.createElement(
+                        FormItem,
+                        (0, _extends3.default)({}, formItemLayout, {
+                            label: '密码',
+                            hasFeedback: true
+                        }),
+                        _react3.default.createElement(_input2.default, (0, _extends3.default)({
+                            type: 'password',
+                            autoComplete: 'off'
+                        }, passwordProps))
+                    )
+                )
+            );
+        }
+    }]);
+    return Login;
+}(_react2.Component));
+
+Login.propTypes = {
+    isAuthed: _react2.PropTypes.bool.isRequired,
+    form: _react2.PropTypes.object.isRequired,
+    login: _react2.PropTypes.func.isRequired,
+    loading: _react2.PropTypes.bool.isRequired
+};
+
+exports.default = _form2.default.create()(Login);
