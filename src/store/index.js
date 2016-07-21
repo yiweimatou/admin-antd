@@ -12,7 +12,7 @@ import createSagaMiddleware from 'redux-saga'
 import SagaManager from '../sagas/SagaManager'
 import reducers from '../reducers'
 
-export default (initialState = {}, history) => {
+const configStore = (initialState = {}, history) => {
     const middleware = routerMiddleware(history)
     const sagaMiddleware = createSagaMiddleware()
     const enhancer = compose(
@@ -30,13 +30,15 @@ export default (initialState = {}, history) => {
             const reducers = require('../reducers');
             const combinedReducers = combineReducers({...reducers,
                 routing
-            });
-            store.replaceReducer(combinedReducers);
+            })
+            store.replaceReducer(combinedReducers)
         })
         module.hot.accept('../sagas/SagaManager', () => {
-            SagaManager.cancelSagas(store);
-            require('../sagas/SagaManager').default.startSagas(sagaMiddleware);
+            SagaManager.cancelSagas(store)
+            require('../sagas/SagaManager').default.startSagas(sagaMiddleware)
         })
     }
     return store
 }
+
+export default configStore

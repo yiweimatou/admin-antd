@@ -21,13 +21,13 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     return {
         login: function login(_ref) {
-            var mobile = _ref.mobile;
-            var password = _ref.password;
+            var account = _ref.account;
+            var pwd = _ref.pwd;
 
             dispatch({
-                type: 'login/start',
+                type: 'login',
                 payload: {
-                    mobile: mobile, password: password
+                    account: account, pwd: pwd
                 }
             });
         },

@@ -6,11 +6,11 @@ const mapStateToProps = state=>({
 })
 
 const mapDispatchToProps = dispatch =>({
-    login({mobile,password}){
+    login({account,pwd}){
         dispatch({
-            type:'login/start',
+            type:'login',
             payload:{
-                mobile,password
+                account,pwd
             }
         })
     },

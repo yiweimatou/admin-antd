@@ -68,7 +68,13 @@ webpackConfig.plugins = [
         favicon:path.join(__dirname,'./src/static/favicon.ico'),
         inject:'body',
         minify:{
-            collapseWhitespace:true
+            collapseWhitespace:true,
+            collapseInlineTagWhitespace: true,
+            removeRedundantAttributes: true,
+            removeEmptyAttributes: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            removeComments: true
         }
     })
 ]

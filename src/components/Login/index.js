@@ -7,13 +7,7 @@ const formItemLayout = {
     labelCol: { span: 4 },
     wrapperCol: { span: 12 },
 }
-const mobileChecker = (rule,value,callback)=>{
-    // if( !isMobile(value) ){
-    //     callback(new Error('请输入合法的手机号码'))
-    // }else{
-    //     callback()
-    // }
-}
+
 class Login extends Component{
     submitHandler=(e)=>{
         e.preventDefault()
@@ -27,14 +21,13 @@ class Login extends Component{
     render(){
         const { loading,isAuthed,form } = this.props
         const { getFieldProps } = form
-        const accountProps = getFieldProps('mobile',{
+        const accountProps = getFieldProps('account',{
             rules:[{
                 required:true,
-                message:'请输入正确的手机号码',
-                validator:mobileChecker
+                message:'请输入账号'
             }]
         })
-        const passwordProps = getFieldProps('password',{
+        const passwordProps = getFieldProps('pwd',{
             rules:[{
                 required:true,
                 message:'请输入密码'
@@ -62,7 +55,7 @@ class Login extends Component{
                         hasFeedback
                     >
                         <Input 
-                            type="text" autoComplete="off" 
+                            type="text"
                             {...accountProps}
                         />
                     </FormItem>
@@ -73,7 +66,6 @@ class Login extends Component{
                     >
                         <Input 
                             type="password" 
-                            autoComplete="off" 
                             {...passwordProps}
                         />
                     </FormItem>

@@ -134,7 +134,7 @@ var Main = _wrapComponent('Main')(function (_Component) {
                                     type: 'ghost',
                                     onClick: logout
                                 },
-                                auth && auth.user ? auth.user.nickname || auth.user.cname || auth.user.mobile : ''
+                                '登出'
                             )
                         )
                     )
@@ -148,7 +148,7 @@ var Main = _wrapComponent('Main')(function (_Component) {
                         _react3.default.createElement(
                             'aside',
                             { className: 'ant-layout-sider' },
-                            _react3.default.createElement(_NavMenu2.default, { lessons: auth && auth.user && auth.user.lessons })
+                            _react3.default.createElement(_NavMenu2.default, null)
                         ),
                         _react3.default.createElement(
                             'div',

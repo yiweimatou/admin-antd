@@ -1,0 +1,32 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.login = login;
+exports.logout = logout;
+exports.changePassword = changePassword;
+
+var _ApiClient = require('./ApiClient');
+
+var _ApiClient2 = _interopRequireDefault(_ApiClient);
+
+var _api = require('../constants/api');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function login(account, pwd) {
+    return _ApiClient2.default.post(_api.ADMIN_LOGIN_API, {
+        account: account, pwd: pwd
+    });
+}
+
+function logout() {
+    return _ApiClient2.default.get(_api.ADMIN_LOGOUT_API, null, { needAuth: true });
+}
+
+function changePassword(old_pwd, pwd) {
+    return _ApiClient2.default.put(_api.ADMIN_PUT_API, {
+        old_pwd: old_pwd, pwd: pwd
+    });
+}

@@ -6,22 +6,21 @@ const SubMenu = Menu.SubMenu
 
 class NavMenu extends Component {
     render(){
-        const {
-            lessons
-        } = this.props
-        if(!lessons){
-            return (null)
-        }
         return(
             <Menu mode="inline" >
                 <Menu.Item>
                     <Link to='/dashboard'><Icon type="laptop" />工作台</Link>
                 </Menu.Item>
-                <Menu.Item>
-                    <Link to='/organize/list'>
-                        <Icon type="team" />机构管理
-                    </Link>
-                </Menu.Item>
+                <SubMenu
+                    key="sub1"
+                    title={<span><Icon type="team" />机构管理</span>}
+                >
+                    <Menu.Item>
+                        <Link to='organize/new'>
+                            新建机构
+                        </Link>
+                    </Menu.Item>
+                </SubMenu>
                 <SubMenu
                     key="sub2"
                     title={
@@ -44,7 +43,6 @@ class NavMenu extends Component {
                         </Link>
                     </Menu.Item>
                 </SubMenu>
-                {lessons===2?
                 <SubMenu
                     key="sub3"
                     title={
@@ -61,8 +59,7 @@ class NavMenu extends Component {
                             我的云板书
                         </Link>
                     </Menu.Item>
-                </SubMenu>:''
-                }
+                </SubMenu>
                 <SubMenu key="sub1" title={<span><Icon type="setting" />设置</span>}>
                 </SubMenu>
             </Menu>
@@ -71,8 +68,7 @@ class NavMenu extends Component {
 }
 
 NavMenu.propTypes = {
-    selected:PropTypes.string,
-    lessons:PropTypes.number
+    selected:PropTypes.string
 }
 
 export default NavMenu

@@ -102,13 +102,6 @@ var formItemLayout = {
     labelCol: { span: 4 },
     wrapperCol: { span: 12 }
 };
-var mobileChecker = function mobileChecker(rule, value, callback) {
-    // if( !isMobile(value) ){
-    //     callback(new Error('请输入合法的手机号码'))
-    // }else{
-    //     callback()
-    // }
-};
 
 var Login = _wrapComponent('Login')(function (_Component) {
     (0, _inherits3.default)(Login, _Component);
@@ -144,14 +137,13 @@ var Login = _wrapComponent('Login')(function (_Component) {
             var form = _props.form;
             var getFieldProps = form.getFieldProps;
 
-            var accountProps = getFieldProps('mobile', {
+            var accountProps = getFieldProps('account', {
                 rules: [{
                     required: true,
-                    message: '请输入正确的手机号码',
-                    validator: mobileChecker
+                    message: '请输入账号'
                 }]
             });
-            var passwordProps = getFieldProps('password', {
+            var passwordProps = getFieldProps('pwd', {
                 rules: [{
                     required: true,
                     message: '请输入密码'
@@ -183,7 +175,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
                             hasFeedback: true
                         }),
                         _react3.default.createElement(_input2.default, (0, _extends3.default)({
-                            type: 'text', autoComplete: 'off'
+                            type: 'text'
                         }, accountProps))
                     ),
                     _react3.default.createElement(
@@ -193,8 +185,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
                             hasFeedback: true
                         }),
                         _react3.default.createElement(_input2.default, (0, _extends3.default)({
-                            type: 'password',
-                            autoComplete: 'off'
+                            type: 'password'
                         }, passwordProps))
                     )
                 )

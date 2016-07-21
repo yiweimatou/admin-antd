@@ -1,0 +1,46 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var HOST = 'http://121.41.92.56';
+
+var ADMIN_BASE_URL = exports.ADMIN_BASE_URL = HOST + ':90/';
+var USER_BASE_URL = exports.USER_BASE_URL = HOST + ':91/';
+
+/**
+ * api codes
+ */
+var OK = exports.OK = 200;
+var BAD_REQUEST = exports.BAD_REQUEST = 400;
+var UNAUTHORIZED = exports.UNAUTHORIZED = 401;
+var FORBIDDEN = exports.FORBIDDEN = 403;
+var INTERNAL_SERVER_ERROR = exports.INTERNAL_SERVER_ERROR = 500;
+/**
+ * Login
+ */
+var ADMIN_LOGIN_API = exports.ADMIN_LOGIN_API = ADMIN_BASE_URL + 'admin/login';
+var ADMIN_LOGOUT_API = exports.ADMIN_LOGOUT_API = ADMIN_BASE_URL + 'admin/logout';
+var ADMIN_PUT_API = exports.ADMIN_PUT_API = ADMIN_BASE_URL + 'admin/put';
+/**
+ * User
+ */
+var USER_ADD_API = exports.USER_ADD_API = ADMIN_BASE_URL + 'user/add';
+var USER_GET_API = exports.USER_GET_API = ADMIN_BASE_URL + 'user/get';
+var USER_PUT_API = exports.USER_PUT_API = ADMIN_BASE_URL + 'user/put';
+var USER_LIST_API = exports.USER_LIST_API = ADMIN_BASE_URL + 'user/list';
+var USER_INFO_API = exports.USER_INFO_API = ADMIN_BASE_URL + 'user/info';
+/**
+ * Organize
+ */
+var ORG_ADD_API = exports.ORG_ADD_API = ADMIN_BASE_URL + 'organize/add';
+var ORG_PUT_API = exports.ORG_PUT_API = ADMIN_BASE_URL + 'organize/put';
+var ORG_LIST_API = exports.ORG_LIST_API = ADMIN_BASE_URL + 'organize/list';
+var ORG_INFO_API = exports.ORG_INFO_API = ADMIN_BASE_URL + 'organize/info';
+var ORG_GET_API = exports.ORG_GET_API = ADMIN_BASE_URL + 'organize/get';
+/**
+ * Area
+ */
+var AREA_GET_API = exports.AREA_GET_API = ADMIN_BASE_URL + 'area/get';
+var AREA_LIST_API = exports.AREA_LIST_API = ADMIN_BASE_URL + 'area/list';
+var AREA_INFO_API = exports.AREA_INFO_API = ADMIN_BASE_URL + 'area/info';

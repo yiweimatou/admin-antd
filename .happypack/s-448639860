@@ -11,7 +11,7 @@ var keys = context.keys().filter(function (item) {
 });
 
 var reducers = keys.reduce(function (memo, key) {
-  memo[key.match(/([^\/]+)\.js$/)[1]] = context(key);
+  memo[key.match(/([^\/]+)\.js$/)[1]] = context(key).default;
   return memo;
 }, {});
 

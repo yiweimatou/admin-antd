@@ -95,11 +95,6 @@ var NavMenu = _wrapComponent('NavMenu')(function (_Component) {
     (0, _createClass3.default)(NavMenu, [{
         key: 'render',
         value: function render() {
-            var lessons = this.props.lessons;
-
-            if (!lessons) {
-                return null;
-            }
             return _react3.default.createElement(
                 _menu2.default,
                 { mode: 'inline' },
@@ -114,13 +109,24 @@ var NavMenu = _wrapComponent('NavMenu')(function (_Component) {
                     )
                 ),
                 _react3.default.createElement(
-                    _menu2.default.Item,
-                    null,
+                    SubMenu,
+                    {
+                        key: 'sub1',
+                        title: _react3.default.createElement(
+                            'span',
+                            null,
+                            _react3.default.createElement(_icon2.default, { type: 'team' }),
+                            '机构管理'
+                        )
+                    },
                     _react3.default.createElement(
-                        _reactRouter.Link,
-                        { to: '/organize/list' },
-                        _react3.default.createElement(_icon2.default, { type: 'team' }),
-                        '机构管理'
+                        _menu2.default.Item,
+                        null,
+                        _react3.default.createElement(
+                            _reactRouter.Link,
+                            { to: 'organize/new' },
+                            '新建机构'
+                        )
                     )
                 ),
                 _react3.default.createElement(
@@ -162,7 +168,7 @@ var NavMenu = _wrapComponent('NavMenu')(function (_Component) {
                         )
                     )
                 ),
-                lessons === 2 ? _react3.default.createElement(
+                _react3.default.createElement(
                     SubMenu,
                     {
                         key: 'sub3',
@@ -191,7 +197,7 @@ var NavMenu = _wrapComponent('NavMenu')(function (_Component) {
                             '我的云板书'
                         )
                     )
-                ) : '',
+                ),
                 _react3.default.createElement(SubMenu, { key: 'sub1', title: _react3.default.createElement(
                         'span',
                         null,
@@ -205,8 +211,7 @@ var NavMenu = _wrapComponent('NavMenu')(function (_Component) {
 }(_react2.Component));
 
 NavMenu.propTypes = {
-    selected: _react2.PropTypes.string,
-    lessons: _react2.PropTypes.number
+    selected: _react2.PropTypes.string
 };
 
 exports.default = NavMenu;
