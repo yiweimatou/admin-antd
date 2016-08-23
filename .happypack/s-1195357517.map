@@ -1,1 +1,1 @@
-null
+{"version":3,"sources":["src\\components\\Dashboard\\index.js"],"names":[],"mappings":";;;;;;AAAA;;;;;;AAEA,IAAM,YAAY,SAAZ,SAAY;AAAA,WACd;AAAA;AAAA;AAAA;AAAA,KADc;AAAA,CAAlB;;kBAIe,S","file":"index.js","sourceRoot":"D:/github/admin-antd","sourcesContent":["import React from 'react'\r\n\r\nconst Dashboard = ()=> (\r\n    <h1>Dashboard</h1>\r\n)\r\n\r\nexport default Dashboard\r\n"]}

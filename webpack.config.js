@@ -8,7 +8,7 @@ var HappyPack = require('happypack')
 var __DEV__ = process.env.NODE_ENV !== 'production'
 
 var webpackConfig = {
-    devtool:__DEV__?'cheap-source-map':'',
+    devtool:__DEV__?'source-map':'',
     debug:true,
     resolve:{
         root:path.join(__dirname,'src'),
@@ -45,10 +45,7 @@ webpackConfig.entry = {
         'react-router',
         'react-dom',
         'redux'
-    ],
-    // externals:[{
-        // 'jquery':'window.jQuery'
-    // }]
+    ]
 }
 /*
   Bundle Output
@@ -135,7 +132,15 @@ webpackConfig.module.loaders = [{
     happy: {id:'js'},
     query: {
         cacheDirectory: true,
-        plugins: ['transform-runtime'],
+        plugins: [
+            'transform-runtime',
+            'babel-plugin-syntax-trailing-function-commas',
+            'babel-plugin-transform-class-properties',
+            'babel-plugin-transform-object-rest-spread',
+            ['antd',{
+                 style:'css'
+            }]
+        ],
         presets: ['es2015', 'react', 'stage-0'],
         env: {
             development: {
@@ -150,13 +155,11 @@ webpackConfig.module.loaders = [{
                             imports: ['react', 'redbox-react']
                         }]
                     }],
-                    ['antd',{
-                        style:'css'
-                    }]
+                    
                 ]
             },
             production: {
-                'presets': [
+                presets: [
                     'react-optimize'
                 ]
             }
