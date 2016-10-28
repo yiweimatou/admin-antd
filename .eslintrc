@@ -6,10 +6,7 @@
         "es6": true
     },
     "parser": "babel-eslint",
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
-    ],
+    "extends": "airbnb", 
     "parserOptions": {
         "ecmaFeatures": {
             "classes": true,
@@ -17,33 +14,22 @@
             "jsx": true
         }
     },
-    "plugins": [
-        "standard",
-        "react"
-    ],
-    "globals": {
-        "__DEV__": true,
-        "__PROD__": false,
-        "__DEBUG__": true,
-        "$":true
-    },
+    // "plugins": [
+    //     "standard",
+    //     "react"
+    // ],
+    "globals": {},
     "settings": {
         "import/parser": "babel-eslint",
         "import/resolve": {
-            "moduleDirectory": ["node_modules", "src"]
+            "moduleDirectory": ["node_modules", "src"],
+            "webpack": {
+                "config": "build/webpack.base.conf.js"
+            }
         }
     },
     "rules": {
-        "indent": [
-            0,
-            "tab"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi":0,
-        "no-console": 0,
-        "no-case-declarations": 0
+        "no-console": 0//,
+        // "no-case-declarations": 0
     }
 }
