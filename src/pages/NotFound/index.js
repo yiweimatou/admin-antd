@@ -2,8 +2,7 @@ import React from 'react';
 import { Button } from 'antd';
 import styles from './index.css';
 
-const NotFound = () => {
-  return (
+const NotFound = () => (
     <div className={styles.normal}>
       <div className={styles.container}>
         <h1 className={styles.title}>404</h1>
@@ -12,6 +11,5 @@ const NotFound = () => {
       </div>
     </div>
   );
-};
 
 export default NotFound;

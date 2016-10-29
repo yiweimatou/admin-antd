@@ -1,20 +1,14 @@
-import MainContainer from '../containers/MainContainer'
-import Dashboard from '../components/Dashboard'
-import NotFound from '../components/NotFound'
+import NotFound from '../pages/NotFound'
+import App from '../components/app'
+import DashBoard from '../pages/dashboard'
 
-const routes = store => ({
-    path: '/',
-    component: MainContainer,
-    indexRoute: {
-        component: Dashboard
-    },
-    childRoutes: [{
-        path: 'dashboard',
-        component: Dashboard
-    }, {
-        path: '*',
-        component: NotFound
-    }]
-})
+const routes = [{
+  path: '/',
+  indexRoute: { component: DashBoard },
+  component: App
+}, {
+    path: '*',
+    component: NotFound
+}]
 
 export default routes

@@ -12,5 +12,9 @@
     </head>
     <body>
         <div id="root"></div>
+        <!-- built files will be auto injected -->
+        <% if (process.env.NODE_ENV === 'production') { %>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/react-router/4.0.0-0/react-router.min.js"></script><% } %>
     </body>
 </html>
