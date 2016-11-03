@@ -17,7 +17,7 @@ module.exports = merge(baseWebpackConfig, {
         loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
       }
     ]
-  }
+  },
   // eval-source-map is faster for development
   devtool: '#eval-source-map',
   plugins: [

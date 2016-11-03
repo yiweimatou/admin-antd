@@ -17,7 +17,7 @@
           "presets": ["react-hmre"]
       },
       "production": {
-          "presets": ["react-optimize"]
+        //   "presets": ["react-app"]
       }
   }
 }

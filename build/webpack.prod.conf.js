@@ -17,11 +17,11 @@ var webpackConfig = merge(baseWebpackConfig, {
         loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
     }]
   },
-  devtool: config.build.productionSourceMap ? '#source-map' : false,
+  devtool: false,
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[id].[chunkhash].js'
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/workflow/production.html
@@ -30,14 +30,22 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
+        screw_ie8: true, // React doesn't support IE8
         warnings: false,
         unused: true,
         dead_code: true
+      },
+      mangle: {
+        screw_ie8: true
+      },
+      output: {
+        comments: false,
+        screw_ie8: true
       }
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     // extract css into its own file
-    new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash].css'), { allChunks: true }),
+    new ExtractTextPlugin('[name].[contenthash].css', { allChunks: true }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
@@ -46,11 +54,19 @@ var webpackConfig = merge(baseWebpackConfig, {
         ? 'index.html'
         : config.build.index,
       template: './src/index.tpl',
+      favicon: './src/assets/favicon.ico',
       inject: true,
       minify: {
         removeComments: true,
         collapseWhitespace: true,
-        removeAttributeQuotes: true
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
         // more options:
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
@@ -72,6 +88,8 @@ var webpackConfig = merge(baseWebpackConfig, {
             path.join(__dirname, '../node_modules/react')
           ) === -1 && module.resource.indexOf(
             path.join(__dirname, '../node_modules/react-router')
+          ) === -1 && module.resource.indexOf(
+            path.join(__dirname, '../node_modules/react-dom')
           ) === -1
         )
       }

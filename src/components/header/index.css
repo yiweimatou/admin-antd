@@ -1,0 +1,23 @@
+.header {
+    background: #fff;
+    height: 64px;
+}
+
+.wrapper {
+    padding: 0 50px;
+}
+
+.logo {
+    width: 180px;
+    height: 32px;
+    margin: 16px 28px 16px 0;
+    float: left;
+}
+
+.login {
+    width: 120px;
+    height: 32px;
+    border-radius: 3px;
+    margin: 10px 0 16px 28px;
+    float: right;
+}

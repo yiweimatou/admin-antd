@@ -4,6 +4,8 @@ var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
 
 module.exports = {
+  // Don't attempt to continue if there are any errors.
+  bail: true,
   entry: {
     app: ['babel-polyfill','./src/index.js']
   },
@@ -18,7 +20,11 @@ module.exports = {
     alias: {
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components')
+      'components': path.resolve(__dirname, '../src/components'),
+      'pages': path.resolve(__dirname, '../src/pages'),
+      'utils': path.resolve(__dirname, '../src/utils'),
+      'services': path.resolve(__dirname, '../src/services'),
+      'constants': path.resolve(__dirname, '../src/constants')
     }
   },
   resolveLoader: {

@@ -1,0 +1,9 @@
+.sider {
+    width: 224px;
+    background: #404040;
+    position: absolute;
+    overflow: visible;
+    padding-top: 24px;
+    bottom: 0;
+    top: 64px;
+}
