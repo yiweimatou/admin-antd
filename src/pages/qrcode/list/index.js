@@ -13,6 +13,7 @@ class QRCodeList extends Component {
         this.state = {
             total: 0,
             dataSource: [],
+            current: 1,
             loading: false,
             downloading: false,
             tempUser: {},
@@ -86,6 +87,7 @@ class QRCodeList extends Component {
             sales_mobile: sales_mobile || '',
             sales_name: sales_name || '',
         }
+        this.setState({ current: 1 })
         if (role2) {
             getUser({ cname: role2 }).then((data) => {
                 if (data.get.id) {
@@ -122,12 +124,16 @@ class QRCodeList extends Component {
         }).catch(error => message.error(error))
     }
     render() {
-        const { total, dataSource, loading, selectedRowKeys, downloading } = this.state
+        const { total, dataSource, loading, selectedRowKeys, downloading, current } = this.state
         const pagination = {
             total,
+            current,
             pageSize: 6,
             showTotal: num => `共${num}条`,
-            onChange: offset => this.changeHandler(offset)
+            onChange: (offset) => {
+                this.setState({ current: offset })
+                this.changeHandler(offset)
+            }
         }
         const columns = [{
             title: '辅导员',
@@ -201,7 +207,7 @@ class QRCodeList extends Component {
                     </FormItem>
                     <FormItem label="状态">
                         {getFieldDecorator('state', { initialValue: '0' })(
-                                <Select style={{ width: '100%' }}>
+                                <Select style={{ width: '70px' }}>
                                     <Option value="0">全部</Option>
                                     <Option value="1">未使用</Option>
                                     <Option value="3">已使用</Option>

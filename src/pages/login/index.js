@@ -5,7 +5,7 @@ import { Form, Button, Input, Icon, Spin, message } from 'antd'
 import styles from './index.css'
 import { isMobile } from '../../utils'
 import { login } from '../../services/auth'
-import { get as getUser } from '../../services/user'
+// import { get as getUser } from '../../services/user'
 
 const FormItem = Form.Item
 
@@ -26,13 +26,7 @@ class Login extends Component {
                 const { key, token } = data
                 localStorage.uid = key
                 localStorage.token = token
-                return getUser({ id: key })
-            }).then((data) => {
-                localStorage.user = JSON.stringify({
-                    cname: data.get.cname,
-                    mobile: data.get.mobile,
-                    cover: data.get.cover
-                })
+                // return getUser({ id: key })
                 this.setState({ fetching: false })
                 const { router } = this.props
                 let redirect = router.location.query.redirect

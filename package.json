@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/yiweimatou/admin-antd#readme",
   "dependencies": {
-    "antd": "^2.2.0",
+    "antd": "^2.3.0",
     "classnames": "^2.2.5",
     "lodash": "^4.16.6",
     "react": "^15.3.2",

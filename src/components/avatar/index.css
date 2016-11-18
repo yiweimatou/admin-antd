@@ -3,6 +3,9 @@
     background: #e3e3e3;
     max-width: 45px;
     max-height: 45px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
 }
 
 .img {

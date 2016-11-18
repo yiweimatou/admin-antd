@@ -18,9 +18,6 @@ class App extends Component {
                 </div>
             </div>
         </div>
-        <div className={styles.footer}>
-          版权所有 © 2016 由医卫里技术部支持
-        </div>
       </div>
     );
   }

@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Table, Modal, message } from 'antd'
-import SearchInput from '../../SearchInput'
+import { Table, Modal, message, Input, Button } from 'antd'
 import { list, info } from 'services/user'
 
 class UserSelector extends Component {
@@ -11,7 +10,8 @@ class UserSelector extends Component {
             loading: true,
             total: 0,
             selected: null,
-            mobile: ''
+            mobile: '',
+            cname: ''
         }
     }
     componentWillMount() {
@@ -19,15 +19,15 @@ class UserSelector extends Component {
     }
     changeHandler = (offset) => {
         this.setState({ loading: true })
-        list({ state: 1, offset, limit: 6, mobile: this.state.mobile })
+        list({ state: 1, offset, limit: 6, mobile: this.state.mobile, cname: this.state.cname })
         .then(data => this.setState({ dataSource: data.list, loading: false }))
         .catch((error) => {
             this.setState({ loading: false })
             message.error(error)
         })
     }
-    searchHandler = (mobile) => {
-        info({ state: 1, mobile: mobile || '' }).then((data) => {
+    searchHandler = () => {
+        info({ state: 1, mobile: this.state.mobile, cname: this.state.cname }).then((data) => {
             this.setState({ total: data.count })
             if (data.count === 0) {
                 this.setState({ dataSource: [] })
@@ -38,7 +38,7 @@ class UserSelector extends Component {
     }
     render() {
         const { visible, selectHandler, cancelHandler } = this.props
-        const { dataSource, loading, total, selected } = this.state
+        const { dataSource, loading, total, selected, cname, mobile } = this.state
         const rowSelection = {
             type: 'radio',
             selectRowkeys: [selected],
@@ -49,9 +49,13 @@ class UserSelector extends Component {
                 } })
         }
         const columns = [{
-            title: '姓名',
+            title: '昵称',
             dataIndex: 'cname',
             key: 'cname'
+        }, {
+            title: '认证姓名',
+            dataIndex: 'cet_cname',
+            key: 'cet_cname'
         }, {
             title: '手机号码',
             dataIndex: 'mobile',
@@ -65,22 +69,28 @@ class UserSelector extends Component {
         }
         return (
             <Modal
-              title="选择辅导员"
+              title="选择用户"
               visible={visible} onOk={() => {
                     if (!selected) {
-                        message.error('请选择一名辅导员!')
+                        message.error('请选择一名用户!')
                     } else {
                         selectHandler(selected)
                     }
             }} onCancel={cancelHandler} maskClosable={false}
             >
-                <SearchInput
+                <Input
+                  value={mobile}
                   placeholder="请输入手机号码"
-                  onSearch={(value) => {
-                        this.setState({ mobile: value })
-                        this.searchHandler(value)
-                    }} style={{ width: 200, marginBottom: 10 }}
+                  onChange={e => this.setState({ mobile: e.target.value })}
+                  style={{ width: 200, marginBottom: 10 }}
                 />
+                 <Input
+                   placeholder="请输入用户昵称"
+                   value={cname}
+                   onChange={e => this.setState({ cname: e.target.value })}
+                   style={{ width: 200, margin: '0 0 10px 10px' }}
+                 />
+                 <Button style={{ margin: '0 0 10px 10px' }} onClick={this.searchHandler}>搜索</Button>
                 <Table rowKey="id" dataSource={dataSource} loading={loading} columns={columns} rowSelection={rowSelection} pagination={pagination} />
             </Modal>
         );

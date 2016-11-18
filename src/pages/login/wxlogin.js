@@ -8,7 +8,8 @@ class WXLogin extends Component {
                 id: 'login',
                 appid: 'wxe17a9f1153e4a1b5',
                 scope: 'snsapi_login',
-                redirect_uri: '',
+                redirect_uri: encodeURIComponent('http://www.yiweimatou.com'),
+                state: 'admin'
             })
         } else {
             loadJS('http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js', () => {
@@ -16,14 +17,15 @@ class WXLogin extends Component {
                     id: 'login',
                     appid: 'wxe17a9f1153e4a1b5',
                     scope: 'snsapi_login',
-                    redirect_uri: encodeURIComponent('http://doctor.yiweimatou.com'),
+                    redirect_uri: encodeURIComponent('http://www.yiweimatou.com'),
+                    state: 'admin'
                 })
             })
         }
     }
     render() {
         return (
-            <div id="login" />
+            <div id="login" style={{ textAlign: 'center' }} />
         );
     }
 }
