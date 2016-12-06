@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Table, message, Input, Col, Button, Select } from 'antd'
-import { asyncInfo, list, edit } from '../../services/lesson'
+import { Table, message, Input, Col, Button, Modal } from 'antd'
+import { add } from '../../../services/section'
+import { HTML } from '../../../constants'
+import { asyncInfo, list } from '../../../services/lesson'
 
-const Option = Select.Option
-class LessonList extends Component {
+class LessonSelect extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -13,7 +14,6 @@ class LessonList extends Component {
             title: '',
             total: 0,
             current: 1,
-            state: '',
             dataSource: []
         }
     }
@@ -21,10 +21,10 @@ class LessonList extends Component {
         this.getInfo()
     }
     getList = (offset) => {
-        const { cname, mobile, title, state } = this.state
+        const { cname, mobile, title } = this.state
         this.setState({ loading: true, current: 1 })
         list({
-            state, cname, mobile, title, offset, limit: 6
+            cname, mobile, title, offset, limit: 6
         }, (error, dataSource) => {
             if (error) {
                 message.error(error)
@@ -35,9 +35,9 @@ class LessonList extends Component {
         })
     }
     getInfo = () => {
-        const { cname, mobile, title, state } = this.state
+        const { cname, mobile, title } = this.state
         asyncInfo({
-            cname, mobile, title, state
+            cname, mobile, title
         }, (error, count) => {
           if (error) {
             message.error(error)
@@ -50,23 +50,41 @@ class LessonList extends Component {
         })
     }
     clickHandler = (lesson) => {
-        edit({
-            id: lesson.id,
-            state: lesson.state === 3 ? 2 : 3
-        }).then(() => {
-            this.setState({
-                dataSource: this.state.dataSource.map((item) => {
-                    if (item.id === lesson.id) {
-                        return {
-                            ...item,
-                            state: lesson.state === 3 ? 2 : 3
-                        }
-                    }
-                    return item
+        if (this.props.records.length === 0) {
+            return
+        }
+        let scount = 0
+        const fArr = []
+        const total = this.props.records.length
+        Promise.all(this.props.records.map((record) => {
+            const { title, content, descript, cover, id } = record
+            return add({
+                organize_id: 0, category_id: HTML, lesson_id: lesson.id, title, content, descript, cover, foreign_id: id
+            }).then(() => {
+                scount++
+            }).catch((error) => {
+                message.error(error)
+                fArr.push({
+                    lessonTitle: lesson.title,
+                    h5Title: record.title
                 })
             })
-            message.success('编辑成功!')
-        }).catch(error => message.error(error))
+        })).then(() => {
+            Modal.info({
+                title: '推送结果',
+                content: <div>
+                            <p>共推送{total}篇,成功{scount}篇</p>
+                            {
+                                fArr.length > 0 &&
+                                <div>失败列表:
+                                    <ul>
+                                    {fArr.map(item => (<li>课程:{item.lessonTitle} 图文:{item.h5Title}</li>))}
+                                    </ul>
+                                </div>
+                            }
+                         </div>
+            })
+        })
     }
     render() {
         const { loading, cname, mobile, title, total, dataSource, current } = this.state
@@ -100,7 +118,7 @@ class LessonList extends Component {
             title: '操作',
             key: 'opreate',
             render: (text, record) => <Button onClick={() => this.clickHandler(record)}>
-                                        {record.state === 3 ? '解冻' : '冻结'}
+                                        推送到课程
                                      </Button>
         }]
         return (
@@ -116,14 +134,6 @@ class LessonList extends Component {
                         <Input placeholder="课程名称" value={title} onChange={e => this.setState({ title: e.target.value })} />
                     </Col>
                     <Col span="3">
-                        <Select defaultValue="" style={{ width: '100%' }} onChange={value => this.setState({ state: value })}>
-                            <Option value="">全部</Option>
-                            <Option value="1">正常</Option>
-                            <Option value="2">下架</Option>
-                            <Option value="3">冻结</Option>
-                        </Select>
-                    </Col>
-                    <Col span="3">
                         <Button type="primary" onClick={this.getInfo}>搜索</Button>
                     </Col>
                 </Input.Group>
@@ -133,4 +143,4 @@ class LessonList extends Component {
     }
 }
 
-export default LessonList
+export default LessonSelect

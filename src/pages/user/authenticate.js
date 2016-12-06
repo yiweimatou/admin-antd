@@ -52,7 +52,7 @@ class Auth extends Component {
         this.props.form.validateFields((errors, values) => {
             if (errors) return
             const { growId, latLng, categoryIds, record } = this.state
-            const { cet_cname, cet_add, cet_dept, cet_org, cet_rank, cet_desc } = values
+            const { cet_cname, cet_add, cet_dept, cet_org, cet_rank, cet_descript } = values
             this.setState({ loading: true })
             if (categoryIds.length > 0) {
                 if (growId > 0) {
@@ -70,7 +70,7 @@ class Auth extends Component {
                 }
             }
             edit({
-                id: record.id, cet_add, cet_dept, cet_rank, cet_org, cet_lat: record.cet_lat, cet_lng: record.cet_lng, cet_cname, cet_desc, cet: 3
+                id: record.id, cet_add, cet_dept, cet_rank, cet_org, cet_lat: record.cet_lat, cet_lng: record.cet_lng, cet_cname, cet_descript, cet: 3
             }).then(() => {
                 this.setState({ loading: false })
                 message.success('修改成功!')
@@ -115,7 +115,7 @@ class Auth extends Component {
                         })(<Input />)}
                     </FormItem>
                     <FormItem {...formItemLayout} label="简介">
-                        {getFieldDecorator('cet_desc', {
+                        {getFieldDecorator('cet_descript', {
                             initialValue: ''
                         })(<Input type="textarea" rows={5} />)}
                     </FormItem>

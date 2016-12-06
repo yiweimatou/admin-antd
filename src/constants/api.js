@@ -1,7 +1,14 @@
 const HOST = 'http://api.yiweimatou.com'
 
 export const ADMIN_DOMAIN = `${HOST}:4001/`
-
+export const UPLOAD_DOMAIN = 'http://image.yiweimatou.com:999'
+/**
+ * default images
+ */
+export const DEFAULT_FACE = 'http://image.yiweimatou.com/ywmt/face/default.png'
+export const DEFAULT_COVER = 'http://image.yiweimatou.com/ywmt/cover/lesson.png'
+export const DEFAULT_LOGO = 'http://image.yiweimatou.com/ywmt/logo/default.png'
+export const DEFAULT_TOPICS = 'http://image.yiweimatou.com/topics.png'
 /**
  * api codes
  */
@@ -10,6 +17,8 @@ export const BAD_REQUEST = 400
 export const UNAUTHORIZED = 401
 export const FORBIDDEN = 403
 export const INTERNAL_SERVER_ERROR = 500
+
+export const HTML_GET = `${UPLOAD_DOMAIN}/header/info`
 /**
  * grow apis
  */
@@ -19,6 +28,16 @@ export const GROW_ADD = `${ADMIN_DOMAIN}/grow/add`
 export const GROW_EDIT = `${ADMIN_DOMAIN}/grow/put`
 export const GROW_DELETE = `${ADMIN_DOMAIN}/grow/del`
 export const GROW_LIST = `${ADMIN_DOMAIN}/grow/list`
+/**
+ * upload apis
+ */
+export const UPLOAD_YUNBOOK_API = `${UPLOAD_DOMAIN}/book/img`
+export const UPLOAD_LOGO_API = `${UPLOAD_DOMAIN}/logo`
+export const UPLOAD_AVATAR_API = `${UPLOAD_DOMAIN}/face`
+export const UPLOAD_COVER_API = `${UPLOAD_DOMAIN}/cover`
+export const UPLOAD_PPT_API = `${UPLOAD_DOMAIN}/book/ppt`
+export const UPLOAD_IMG_API = `${UPLOAD_DOMAIN}/img`
+export const UPLOAD_FILE_API = `${UPLOAD_DOMAIN}/file`
 /**
  * category api
  */
@@ -80,4 +99,22 @@ export const SECTION_INFO = `${ADMIN_DOMAIN}section/info`
 export const SECTION_LIST = `${ADMIN_DOMAIN}section/list`
 export const SECTION_EDIT = `${ADMIN_DOMAIN}section/put`
 export const SECTION_DELETE = `${ADMIN_DOMAIN}section/del`
-
+export const SECTION_ADMIN_ADD = `${ADMIN_DOMAIN}section/admin/add`
+/**
+ * h5
+ */
+export const H5_ADMIN_ADD = `${ADMIN_DOMAIN}/h5/admin/add`
+export const H5_ADMIN_EDIT = `${ADMIN_DOMAIN}/h5/admin/put`
+export const H5_ADMIN_DEL = `${ADMIN_DOMAIN}/h5/admin/del`
+export const H5_LIST = `${ADMIN_DOMAIN}/h5/list`
+export const H5_INFO = `${ADMIN_DOMAIN}/h5/info`
+export const H5_GET = `${ADMIN_DOMAIN}/h5/get`
+/**
+ * source apis
+ */
+export const SOURCE_GET_API = `${ADMIN_DOMAIN}/source/get`
+export const SOURCE_Add_API = `${ADMIN_DOMAIN}/source/add`
+export const SOURCE_INFO_API = `${ADMIN_DOMAIN}/source/info`
+export const SOURCE_LIST_API = `${ADMIN_DOMAIN}/source/list`
+export const SOURCE_EDIT_API = `${ADMIN_DOMAIN}/source/put`
+export const SOURCE_DELETE_API = `${ADMIN_DOMAIN}/source/del`

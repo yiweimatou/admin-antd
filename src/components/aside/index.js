@@ -25,6 +25,7 @@ class Aside extends Component {
                     </SubMenu>
                     <SubMenu key="section" title={<span><Icon type="file" />文章管理</span>}>
                         <MenuItem><Link to="/section/list">文章列表</Link></MenuItem>
+                        <MenuItem><Link to="/h5/list">系统图文管理</Link></MenuItem>
                     </SubMenu>
                     <SubMenu key="qrcode" title={<span><Icon type="qrcode" />二维码管理</span>}>
                         <MenuItem><Link to="/qrcode/add">新建二维码</Link></MenuItem>

@@ -1,12 +1,12 @@
 {
     "env": {
         "browser": true,
-        "node": true,
+        //"node": true,
         "commonjs": true,
         "es6": true
     },
     "parser": "babel-eslint",
-    "extends": "airbnb", 
+    "extends": "airbnb",
     "parserOptions": {
         "ecmaFeatures": {
             "classes": true,
@@ -14,10 +14,10 @@
             "jsx": true
         }
     },
-    // "plugins": [
-    //     "standard",
-    //     "react"
-    // ],
+    //"plugins": [
+       //"standard",
+       //"react"
+    //],
     "globals": {
         "utils": true,
         "components": true,
@@ -34,7 +34,7 @@
     },
     "rules": {
         "no-console": 0,
-        // "no-case-declarations": 0,
+        "no-case-declarations": 0,
         "semi": 0,
         "react/jsx-filename-extension": 0,
         "react/prefer-stateless-function": 0,
@@ -50,6 +50,7 @@
         "no-param-reassign": 0,
         "camelcase": 0,
         "jsx-a11y/href-no-hash": 0,
-        "no-plusplus": 0
+        "no-plusplus": 0,
+        "react/no-string-refs": 0
     }
 }

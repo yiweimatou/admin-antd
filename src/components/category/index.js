@@ -6,31 +6,42 @@ class Category extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            options: [],
+            options: [{
+                label: '医学专业人员',
+                value: '1',
+                isLeaf: false
+            }, {
+                value: '2',
+                label: '普通大众',
+                isLeaf: false
+            }],
             value: [],
             latLng: { lat: 0, lng: 0 }
         }
     }
     componentWillMount() {
-        getList({ parent_id: 'iMedAA0109_10' }).then((data) => {
-            if (data.list.length > 0) {
-                this.setState({
-                    options: data.list.map(item => ({
-                        label: item.title,
-                        value: item.id,
-                        isLeaf: false,
-                        lat: item.lat,
-                        lng: item.lng,
-                        area: {
-                            lat1: item.lat1,
-                            lat2: item.lat2,
-                            lng1: item.lng1,
-                            lng2: item.lng2
-                        }
-                    }))
-                })
-            }
-        })
+        const { hospital } = this.props
+        if (hospital) {
+            getList({ parent_id: 'iMedAA0109_10' }).then((data) => {
+                if (data.list.length > 0) {
+                    this.setState({
+                        options: data.list.map(item => ({
+                            label: item.title,
+                            value: item.id,
+                            isLeaf: false,
+                            lat: item.lat,
+                            lng: item.lng,
+                            area: {
+                                lat1: item.lat1,
+                                lat2: item.lat2,
+                                lng1: item.lng1,
+                                lng2: item.lng2
+                            }
+                        }))
+                    })
+                }
+            })
+        }
     }
     loadData = (selectedOptions) => {
         const targetOption = selectedOptions[selectedOptions.length - 1]

@@ -1,8 +1,12 @@
 import array from 'lodash/array'
 import ApiClient from './ApiClient'
-import { SECTION_EDIT, SECTION_INFO, SECTION_LIST, LESSON_TEAM_LIST, SECTION_DELETE } from '../constants/api'
+import { SECTION_EDIT, SECTION_INFO, SECTION_LIST, LESSON_TEAM_LIST, SECTION_DELETE, SECTION_ADMIN_ADD } from '../constants/api'
 import { get as getUser, } from './user'
 import { listAsync as getLessonList } from './lesson'
+
+export function add(params: Object) {
+    return ApiClient.post(SECTION_ADMIN_ADD, params, { needAuth: true })
+}
 
 export function edit(params: Object) {
     return ApiClient.post(SECTION_EDIT, params, { needAuth: true })

@@ -80,7 +80,7 @@ class AddOrganize extends Component {
                         })(<Input readOnly onClick={this.clickHandler} />)}
                     </FormItem>
                     <FormItem {...formItemLayout} label="机构分类">
-                        <Category onChange={(categoryIds, latLng) => this.setState({ categoryIds, latLng })} />
+                        <Category hospital onChange={(categoryIds, latLng) => this.setState({ categoryIds, latLng })} />
                     </FormItem>
                     <FormItem {...formItemLayout} label="机构定位">
                         <Map latLng={{ lat: 0, lng: 0 }} setAddress={this.setAddress} />

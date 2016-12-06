@@ -65,6 +65,7 @@
     "less-loader": "^2.2.3",
     "opn": "^4.0.2",
     "ora": "^0.3.0",
+    "quill": "^1.1.5",
     "react-tools": "^0.13.3",
     "react-transform": "0.0.3",
     "react-transform-catch-errors": "^1.0.2",

@@ -13,6 +13,8 @@ import UserEdit from '../pages/user/edit'
 import LessonList from '../pages/lesson/list'
 import SectionList from '../pages/section/list'
 import { WECHATLOGIN } from '../constants'
+import AddH5 from '../pages/h5/add'
+import ListH5 from '../pages/h5/list'
 
 const routes = [{
   path: '/',
@@ -30,6 +32,16 @@ const routes = [{
   childRoutes: [{
     path: 'dashboard',
     component: DashBoard
+  }, {
+    path: 'h5',
+    indexRoute: { component: ListH5 },
+    childRoutes: [{
+      path: 'add',
+      component: AddH5
+    }, {
+      path: 'list',
+      component: ListH5
+    }]
   }, {
     path: 'qrcode',
     indexRoute: { component: listQrcode },

@@ -89,11 +89,13 @@ class UserList extends Component {
             title: '权限',
             key: 'lesson',
             render: (text, record) => {
-                if (record.lesson_num > 0) {
-                    if (record.rcmd_lesson_num > 0) {
+                if (record.lesson === 2) {
+                    if (record.rcmd_lesson === 2) {
                         return '主讲/推荐开课'
                     }
                     return '主讲'
+                } else if (record.rcmd_lesson === 2) {
+                  return '推荐开课'
                 }
                 return '普通用户'
             }

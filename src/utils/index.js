@@ -29,3 +29,29 @@ export function loadJS(url: string, success: Function) {
      }
      document.getElementsByTagName('head')[0].appendChild(domScript);
 }
+
+export const ytRegExp = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
+export const youkuRegExp = /https?:\/\/v\.youku\.com\/v_show\/id_(\w+)=*\.html/
+export const qqRegExp = /\S*v.qq.com\S*vid=(\S+)/
+export const qqRegExp2 = /\S*v.qq.com\S*\/(\S+).html/
+
+export const videoUrlConvert = (url) => {
+    const ytMatch = url.match(ytRegExp)
+    const youkuMatch = url.match(youkuRegExp)
+    const qqMatch = url.match(qqRegExp)
+    const qqMatch2 = url.match(qqRegExp2)
+    if (youkuMatch && youkuMatch[1].length > 0) {
+        return `//player.youku.com/embed/${youkuMatch[1]}`
+    } else if (qqMatch && qqMatch[1].length > 0) {
+        return `http://v.qq.com/iframe/player.html?tiny=0&auto=0&vid=${qqMatch[1]}`
+    } else if (qqMatch2 && qqMatch2[1].length > 0) {
+        return `http://v.qq.com/iframe/player.html?tiny=0&auto=0&vid=${qqMatch2[1]}`
+    } else if (ytMatch && ytMatch[1].length > 0) {
+        return `//www.youtube.com/embed/${ytMatch[1]}`
+    }
+    return ''
+}
+
+export const isBaike = value => isUrl(value) && matchRegexp(value, /^http:\/\/baike.baidu.com*/)
+
+export const isWX = value => isUrl(value) && matchRegexp(value, /mp.weixin.qq.com*/)
