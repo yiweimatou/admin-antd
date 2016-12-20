@@ -13,6 +13,13 @@ class Aside extends Component {
                     <MenuItem key="dashboard">
                         <Link to="/dashboard"><Icon type="laptop" /><span>工作台</span></Link>
                     </MenuItem>
+                    <SubMenu key="record" title={<span><Icon type="folder" />档案管理</span>}>
+                        <MenuItem>
+                          <Link to="/record/category">
+                            档案记录项类目
+                          </Link>
+                        </MenuItem>
+                    </SubMenu>
                     <SubMenu key="organize" title={<span><Icon type="team" />机构管理</span>}>
                         <MenuItem><Link to="/organize/add">新建机构</Link></MenuItem>
                         <MenuItem><Link to="/organize/list">机构列表</Link></MenuItem>

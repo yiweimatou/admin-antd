@@ -15,6 +15,7 @@ import SectionList from '../pages/section/list'
 import { WECHATLOGIN } from '../constants'
 import AddH5 from '../pages/h5/add'
 import ListH5 from '../pages/h5/list'
+import ListRecordCategory from '../pages/record_category/list'
 
 const routes = [{
   path: '/',
@@ -32,6 +33,9 @@ const routes = [{
   childRoutes: [{
     path: 'dashboard',
     component: DashBoard
+  }, {
+    path: 'record/category',
+    component: ListRecordCategory
   }, {
     path: 'h5',
     indexRoute: { component: ListH5 },

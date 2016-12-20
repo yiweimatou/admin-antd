@@ -118,3 +118,12 @@ export const SOURCE_INFO_API = `${ADMIN_DOMAIN}/source/info`
 export const SOURCE_LIST_API = `${ADMIN_DOMAIN}/source/list`
 export const SOURCE_EDIT_API = `${ADMIN_DOMAIN}/source/put`
 export const SOURCE_DELETE_API = `${ADMIN_DOMAIN}/source/del`
+/**
+* records_category apis
+*/
+export const RECORD_CATEGORY_GET = `${ADMIN_DOMAIN}/records_category/get`
+export const RECORD_CATEGORY_EDIT = `${ADMIN_DOMAIN}/records_category/put`
+export const RECORD_CATEGORY_INFO = `${ADMIN_DOMAIN}/records_category/info`
+export const RECORD_CATEGORY_LIST = `${ADMIN_DOMAIN}/records_category/list`
+export const RECORD_CATEGORY_REMOVE = `${ADMIN_DOMAIN}/records_category/del`
+export const RECORD_CATEGORY_ADD = `${ADMIN_DOMAIN}/records_category/add`

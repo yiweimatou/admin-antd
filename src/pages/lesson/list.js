@@ -69,7 +69,9 @@ class LessonList extends Component {
         }).catch(error => message.error(error))
     }
     render() {
-        const { loading, cname, mobile, title, total, dataSource, current } = this.state
+        const {
+          loading, cname, mobile, title, total, dataSource, current
+        } = this.state
         const pagination = {
             total,
             current,
@@ -95,28 +97,39 @@ class LessonList extends Component {
             title: '状态',
             key: 'state',
             dataIndex: 'state',
-            render: text => (text === 1 && '正常') || (text === 2 && '下架') || (text === 3 && '冻结')
+            render: text => (text === 1 && '正常')
+                            || (text === 2 && '下架')
+                            || (text === 3 && '冻结')
         }, {
             title: '操作',
             key: 'opreate',
-            render: (text, record) => <Button onClick={() => this.clickHandler(record)}>
-                                        {record.state === 3 ? '解冻' : '冻结'}
-                                     </Button>
+            render: (text, record) =>
+            <Button onClick={() => this.clickHandler(record)}>
+                {record.state === 3 ? '解冻' : '冻结'}
+            </Button>
         }]
         return (
             <div>
                 <Input.Group style={{ marginBottom: '20px' }}>
                     <Col span="6">
-                        <Input placeholder="昵称" value={cname} onChange={e => this.setState({ cname: e.target.value })} />
+                        <Input placeholder="昵称" value={cname} onChange={
+                          e => this.setState({ cname: e.target.value })
+                        } />
                     </Col>
                     <Col span="6">
-                        <Input placeholder="手机号码" value={mobile} onChange={e => this.setState({ mobile: e.target.value })} />
+                        <Input placeholder="手机号码" value={mobile} onChange={
+                          e => this.setState({ mobile: e.target.value })
+                        } />
                     </Col>
                     <Col span="6">
-                        <Input placeholder="课程名称" value={title} onChange={e => this.setState({ title: e.target.value })} />
+                        <Input placeholder="课程名称" value={title} onChange={
+                          e => this.setState({ title: e.target.value })
+                        } />
                     </Col>
                     <Col span="3">
-                        <Select defaultValue="" style={{ width: '100%' }} onChange={value => this.setState({ state: value })}>
+                        <Select defaultValue="" style={{ width: '100%' }} onChange={
+                          value => this.setState({ state: value })
+                        }>
                             <Option value="">全部</Option>
                             <Option value="1">正常</Option>
                             <Option value="2">下架</Option>
@@ -127,7 +140,12 @@ class LessonList extends Component {
                         <Button type="primary" onClick={this.getInfo}>搜索</Button>
                     </Col>
                 </Input.Group>
-                <Table bordered loading={loading} dataSource={dataSource} columns={columns} pagination={pagination} />
+                <Table
+                  bordered
+                  loading={loading}
+                  dataSource={dataSource}
+                  columns={columns}
+                  pagination={pagination} />
             </div>
         )
     }
