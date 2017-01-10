@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { WX } from '../../../constants/api'
 import { Modal, Button, message } from 'antd'
+import { WX } from '../../../constants'
 import LinkSelect from '../../Resource/LinkSelect'
 
 class WxButton extends Component {
@@ -14,9 +14,8 @@ class WxButton extends Component {
         this.changeHandler = this.changeHandler.bind(this)
         this.okHandler = this.okHandler.bind(this)
     }
-    
     toggleVisible() {
-        this.setState((prevState) => ({
+        this.setState(prevState => ({
             visible: !prevState.visible
         }))
     }
@@ -38,11 +37,11 @@ class WxButton extends Component {
         return (
                 <Button style={{ marginLeft: '5px' }} onClick={this.toggleVisible}>
                     <Modal
-                        visible={visible}
-                        title="选择微信"
-                        onOk={this.okHandler}
-                        onCancel={this.toggleVisible}
-                        maskClosable={false}
+                      visible={visible}
+                      title="选择微信"
+                      onOk={this.okHandler}
+                      onCancel={this.toggleVisible}
+                      maskClosable={false}
                     >
                         <LinkSelect category={WX} onChange={this.changeHandler} />
                     </Modal>

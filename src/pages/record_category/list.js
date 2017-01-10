@@ -49,8 +49,10 @@ class List extends Component {
     this.setState({ loading: true })
     list({
       title: this.state.title,
-      limit: 6,
-      offset
+      limit: 20,
+      offset,
+      order_by: 'rank',
+      sort: 'desc'
     }).then((data) => {
       this.setState({ loading: false, dataSource: data.list })
     }).catch((error) => {
@@ -135,7 +137,7 @@ class List extends Component {
     const pagination = {
       total,
       showTotal: num => `共${num}条`,
-      pageSize: 6,
+      pageSize: 20,
       onChange: this.listHandler
     }
     return (

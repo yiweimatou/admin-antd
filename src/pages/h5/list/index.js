@@ -3,6 +3,7 @@ import { Table, Button, Input, Col, message, Modal } from 'antd'
 import { Link } from 'react-router'
 import { list, info, remove } from '../../../services/h5'
 import LessonSelect from '../../../components/lesson/select'
+import Edit from '../edit'
 
 class List extends Component {
     constructor(props) {
@@ -13,8 +14,12 @@ class List extends Component {
             total: 0,
             loading: true,
             visible: false,
-            records: []
+            editVisible: false,
+            records: [],
+            record: {}
         }
+        this.editOkHandler = this.editOkHandler.bind(this)
+        this.editCancelHandler = this.editCancelHandler.bind(this)
     }
 
     componentWillMount() {
@@ -37,12 +42,34 @@ class List extends Component {
     }
     listHandler = (offset) => {
         list({
-            offset, limit: 6, title: this.state.title, account_id: 0, state: 1
+            offset, limit: 20, title: this.state.title, account_id: 0, state: 1
         }).then((data) => {
             this.setState({ loading: false, dataSource: data.list })
         }).catch((error) => {
             this.setState({ loading: false })
             message.error(error)
+        })
+    }
+    editClickHandler(item) {
+        this.setState({
+            editVisible: true,
+            record: item
+        })
+    }
+    editOkHandler(item) {
+        this.setState(prevState => ({
+            editVisible: false,
+            dataSource: prevState.dataSource.map((record) => {
+                if (record.id === item.id) {
+                    return item
+                }
+                return record
+            })
+        }))
+    }
+    editCancelHandler() {
+        this.setState({
+            editVisible: false
         })
     }
     searchHandler = () => {
@@ -56,14 +83,11 @@ class List extends Component {
             }))
         }).catch(error => message.error(error))
     }
-    okHandler = () => {
-
-    }
     toggleVisible = () => this.setState(prevState => ({
         visible: !prevState.visible
     }))
     render() {
-        const { title, dataSource, loading, total, visible, records } = this.state
+        const { title, dataSource, loading, total, visible, records, record, editVisible } = this.state
         const columns = [{
             title: '图文标题',
             dataIndex: 'title',
@@ -73,6 +97,7 @@ class List extends Component {
             key: 'oper',
             render: (text, item) => (<div>
                     <a onClick={() => this.removeHandler(item.id)}>删除</a>
+                    <a style={{ marginLeft: 8 }} onClick={() => this.editClickHandler(item)}>编辑</a>
                     <a
                       style={{ marginLeft: 8 }} onClick={() => {
                             this.setState({ records: [item] })
@@ -85,6 +110,7 @@ class List extends Component {
         const pagination = {
             total,
             showTotal: num => `共${num}条`,
+            pageSize: 20,
             onChange: this.listHandler
         }
         const rowSelection = {
@@ -95,7 +121,8 @@ class List extends Component {
         const hasSelected = records.length > 0
         return (
             <div>
-                <Modal title="选择课程" maskClosable={false} onOk={this.okHandler} onCancel={this.toggleVisible} visible={visible} width={720} footer={null}>
+                <Edit visible={editVisible} onOk={this.editOkHandler} onCancel={this.editCancelHandler} record={record} />
+                <Modal title="选择课程" maskClosable={false} onCancel={this.toggleVisible} visible={visible} width={720} footer={null}>
                     <LessonSelect records={records} />
                 </Modal>
                 <Input.Group style={{ marginBottom: '20px' }}>

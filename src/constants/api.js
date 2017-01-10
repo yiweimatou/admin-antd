@@ -38,6 +38,7 @@ export const UPLOAD_COVER_API = `${UPLOAD_DOMAIN}/cover`
 export const UPLOAD_PPT_API = `${UPLOAD_DOMAIN}/book/ppt`
 export const UPLOAD_IMG_API = `${UPLOAD_DOMAIN}/img`
 export const UPLOAD_FILE_API = `${UPLOAD_DOMAIN}/file`
+export const UPLOAD_SWIPER = `${UPLOAD_DOMAIN}/swiper`
 /**
  * category api
  */

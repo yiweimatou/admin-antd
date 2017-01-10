@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { BAIKE } from '../../../constants/api'
 import { Modal, Button, message } from 'antd'
 import LinkSelect from '../../Resource/LinkSelect'
+import { BAIKE } from '../../../constants'
 
 class BaikeButton extends Component {
     constructor(props) {
@@ -14,9 +14,8 @@ class BaikeButton extends Component {
         this.changeHandler = this.changeHandler.bind(this)
         this.okHandler = this.okHandler.bind(this)
     }
-    
     toggleVisible() {
-        this.setState((prevState) => ({
+        this.setState(prevState => ({
             visible: !prevState.visible
         }))
     }
@@ -38,12 +37,12 @@ class BaikeButton extends Component {
         return (
                 <Button style={{ marginLeft: '5px' }} onClick={this.toggleVisible}>
                     <Modal
-                        visible={visible}
-                        title="选择百科"
-                        onOk={this.okHandler}
-                        onCancel={this.toggleVisible}
-                        maskClosable={false}
-                        width={720}
+                      visible={visible}
+                      title="选择百科"
+                      onOk={this.okHandler}
+                      onCancel={this.toggleVisible}
+                      maskClosable={false}
+                      width={720}
                     >
                         <LinkSelect category={BAIKE} onChange={this.changeHandler} />
                     </Modal>

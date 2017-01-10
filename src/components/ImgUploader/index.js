@@ -7,7 +7,7 @@ class ImgUploader extends Component {
         fileList: []
     }
     componentWillMount() {
-        if (this.props.fileList.length > 0) {
+        if (this.props.fileList && this.props.fileList.length > 0) {
             this.setState({
                 fileList: this.props.fileList
             })
@@ -17,7 +17,7 @@ class ImgUploader extends Component {
         const { fileList } = nextProps
         this.setState({ fileList })
     }
-    changeHandler= (info) => {
+    changeHandler = (info) => {
         let fileList = info.fileList
         fileList = fileList.slice(-1)
         // fileList = fileList.map((file) => {
@@ -30,10 +30,9 @@ class ImgUploader extends Component {
             if (file.response) {
                 if (file.response.code === 200) {
                     return true
-                } else {
-                    message.error(file.response.msg ? file.response.msg : '服务器未响应，请稍后再试', 6)
-                    return false
                 }
+                message.error(file.response.msg ? file.response.msg : '服务器未响应，请稍后再试', 6)
+                return false
             }
             return true
         })

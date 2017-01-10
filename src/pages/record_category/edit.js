@@ -21,6 +21,7 @@ class Edit extends Component {
                 required: values.required ? 1 : 2,
                 max_val: values.max_val,
                 min_val: values.min_val,
+                rank: values.rank,
                 id: this.props.record.id
             }
             this.setState({ loading: true })
@@ -70,8 +71,11 @@ class Edit extends Component {
                         <FormItem {...formItemLayout} label="是否必须">
                             {getFieldDecorator('required', {
                                 valuePropName: 'checked',
-                                initialValue: record.required
+                                initialValue: record.required === 1
                             })(<Checkbox />)}
+                        </FormItem>
+                        <FormItem {...formItemLayout} label="排序">
+                            {getFieldDecorator('rank', { initialValue: record.rank })(<Input />)}
                         </FormItem>
                     </Form>
                 </Spin>

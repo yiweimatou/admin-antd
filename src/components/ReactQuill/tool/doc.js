@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { DOC } from '../../../constants/api'
 import { Modal, Button, message } from 'antd'
+import { DOC } from '../../../constants'
 import LinkSelect from '../../Resource/LinkSelect'
 
 class DocButton extends Component {

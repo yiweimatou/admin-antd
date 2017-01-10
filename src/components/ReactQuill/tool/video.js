@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import VideoSelect from '../../Resource/Video/Select'
 import { Modal, Button, message } from 'antd'
+import VideoSelect from '../../Resource/Video/Select'
 
 class VideoButton extends Component {
     constructor(props) {

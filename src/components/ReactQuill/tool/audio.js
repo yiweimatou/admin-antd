@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import AudioSelect from '../../Resource/Audio/Select'
 import { Modal, Button, message } from 'antd'
+import AudioSelect from '../../Resource/Audio/Select'
 
 class AudioButton extends Component {
     constructor(props) {

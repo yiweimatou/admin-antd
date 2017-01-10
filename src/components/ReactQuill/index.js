@@ -226,6 +226,7 @@ class ReactQuill extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.content !== nextProps.content && this.quill) {
+            this.quill.root.innerHTML = ''
             this.quill.clipboard.dangerouslyPasteHTML(0, nextProps.content)
         }
     }

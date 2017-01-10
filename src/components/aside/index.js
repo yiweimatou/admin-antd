@@ -13,6 +13,9 @@ class Aside extends Component {
                     <MenuItem key="dashboard">
                         <Link to="/dashboard"><Icon type="laptop" /><span>工作台</span></Link>
                     </MenuItem>
+                    <MenuItem key="swiper">
+                        <Link to="/swiper"><Icon type="file-jpg" /><span>轮播图管理</span></Link>
+                    </MenuItem>
                     <SubMenu key="record" title={<span><Icon type="folder" />档案管理</span>}>
                         <MenuItem>
                           <Link to="/record/category">
