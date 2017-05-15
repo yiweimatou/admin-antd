@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react'
 import Header from '../header/index'
 import Aside from '../aside/index'
 import styles from './index.css'

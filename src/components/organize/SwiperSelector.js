@@ -17,18 +17,18 @@ class SwiperSelector extends Component {
         this.getInfo()
     }
     getInfo = () => {
-        info({ title: this.state.title }).then((data) => {
+        info({ title: this.state.title, state: 1 }).then((data) => {
             if (data.count === 0) {
                 this.setState({ total: data.count, dataSource: [] })
             } else {
-                this.setState({ total: data.count, current: 1 })
+                this.setState({ total: data.count })
                 this.getList(1)
             }
         }).catch(error => message.error(error))
     }
     getList = (offset) => {
         this.setState({ loading: true })
-        list({ title: this.state.title, offset, limit: 6 }).then((data) => {
+        list({ title: this.state.title, offset, limit: 6, state: 1 }).then((data) => {
             this.setState({ loading: false, dataSource: data.list })
         }).catch((error) => {
             this.setState({ loading: false })

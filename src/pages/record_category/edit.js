@@ -19,6 +19,7 @@ class Edit extends Component {
             const params = {
                 title: values.title,
                 required: values.required ? 1 : 2,
+                reckon: values.reckon ? 1 : 2,
                 max_val: values.max_val,
                 min_val: values.min_val,
                 rank: values.rank,
@@ -74,6 +75,12 @@ class Edit extends Component {
                                 initialValue: record.required === 1
                             })(<Checkbox />)}
                         </FormItem>
+                        <FormItem {...formItemLayout} label="是否计算所得">
+                            {getFieldDecorator('reckon', {
+                                valuePropName: 'checked',
+                                initialValue: record.reckon === 1
+                            })(<Checkbox />)}
+                        </FormItem>
                         <FormItem {...formItemLayout} label="排序">
                             {getFieldDecorator('rank', { initialValue: record.rank })(<Input />)}
                         </FormItem>
@@ -91,4 +98,3 @@ Edit.propTypes = {
 }
 
 export default Form.create()(Edit)
-

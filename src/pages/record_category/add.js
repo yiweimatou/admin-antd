@@ -15,10 +15,10 @@ class AddRecordCategory extends Component {
   okHandler() {
     this.props.form.validateFields((errors, values) => {
       if (errors) return
-      const { title, max_val, min_val, required, rank } = values
+      const { title, max_val, min_val, required, rank, reckon } = values
       this.setState({ loading: true })
       const params = {
-        title, max_val, min_val, rank, required: required ? 1 : 2
+        title, max_val, min_val, rank, required: required ? 1 : 2, reckon: reckon ? 1 : 2
       }
       add(params).then((data) => {
         this.setState({ loading: false })
@@ -63,6 +63,11 @@ class AddRecordCategory extends Component {
             </FormItem>
             <FormItem {...formItemLayout} label="是否必须">
               {getFieldDecorator('required', {
+                valuePropName: 'checked'
+              })(<Checkbox />)}
+            </FormItem>
+            <FormItem {...formItemLayout} label="是否计算所得">
+              {getFieldDecorator('reckon', {
                 valuePropName: 'checked'
               })(<Checkbox />)}
             </FormItem>

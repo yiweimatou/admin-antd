@@ -127,6 +127,11 @@ class List extends Component {
       key: 'required',
       render: text => (text === 1 ? '是' : '否')
     }, {
+      title: '是否计算所得',
+      dataIndex: 'reckon',
+      key: 'reckon',
+      render: text => (text === 1 ? '是' : '否')
+    }, {
       title: '操作',
       key: 'oper',
       render: (text, item) => (<div>

@@ -17,6 +17,9 @@ import AddH5 from '../pages/h5/add'
 import ListH5 from '../pages/h5/list'
 import ListRecordCategory from '../pages/record_category/list'
 import swiper from '../pages/swiper'
+import Help from '../pages/help'
+import DeviceType from '../pages/device/type'
+import Device from '../pages/device'
 
 const routes = [{
   path: '/',
@@ -34,6 +37,12 @@ const routes = [{
   childRoutes: [{
     path: 'dashboard',
     component: DashBoard
+  },
+  { path: 'device/list', component: Device },
+  { path: 'device/type/list', component: DeviceType },
+  {
+    path: 'help',
+    component: Help
   }, {
     path: 'swiper',
     component: swiper

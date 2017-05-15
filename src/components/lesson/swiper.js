@@ -11,7 +11,6 @@ class LessonSelect extends Component {
             mobile: '',
             title: '',
             total: 0,
-            current: 1,
             dataSource: []
         }
     }
@@ -20,9 +19,9 @@ class LessonSelect extends Component {
     }
     getList = (offset) => {
         const { cname, mobile, title } = this.state
-        this.setState({ loading: true, current: 1 })
+        this.setState({ loading: true })
         list({
-            cname, mobile, title, offset, limit: 6
+            cname, mobile, title, offset, limit: 6, state: 1
         }, (error, dataSource) => {
             if (error) {
                 message.error(error)
@@ -35,14 +34,14 @@ class LessonSelect extends Component {
     getInfo = () => {
         const { cname, mobile, title } = this.state
         asyncInfo({
-            cname, mobile, title
+            cname, mobile, title, state: 1
         }, (error, count) => {
           if (error) {
             message.error(error)
           } else if (count === 0) {
                 this.setState({ total: 0, dataSource: [] })
           } else {
-              this.setState({ total: count, current: 1 })
+              this.setState({ total: count })
               this.getList(1)
           }
         })
@@ -51,10 +50,9 @@ class LessonSelect extends Component {
         this.props.onSelect(lesson.id)
     }
     render() {
-        const { loading, cname, mobile, title, total, dataSource, current } = this.state
+        const { loading, cname, mobile, title, total, dataSource } = this.state
         const pagination = {
             total,
-            current,
             pageSize: 6,
             showTotal: num => `共${num}条`,
             onChange: this.getList
@@ -78,7 +76,7 @@ class LessonSelect extends Component {
             key: 'opreate',
             render: (text, record) => <Button onClick={() => this.clickHandler(record)}>
                                         选择
-                                     </Button>
+                                      </Button>
         }]
         return (
             <Modal visible={this.props.visible} footer={null} maskClosable={false}>

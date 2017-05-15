@@ -13,6 +13,9 @@ class Aside extends Component {
                     <MenuItem key="dashboard">
                         <Link to="/dashboard"><Icon type="laptop" /><span>工作台</span></Link>
                     </MenuItem>
+                    <MenuItem key="help">
+                        <Link to="help"><Icon type="question" />帮助管理</Link>
+                    </MenuItem>
                     <MenuItem key="swiper">
                         <Link to="/swiper"><Icon type="file-jpg" /><span>轮播图管理</span></Link>
                     </MenuItem>
@@ -40,6 +43,14 @@ class Aside extends Component {
                     <SubMenu key="qrcode" title={<span><Icon type="qrcode" />二维码管理</span>}>
                         <MenuItem><Link to="/qrcode/add">新建二维码</Link></MenuItem>
                         <MenuItem><Link to="/qrcode/list">二维码列表</Link></MenuItem>
+                    </SubMenu>
+                    <SubMenu key="device" title={<span><Icon type="mobile" />设备管理</span>}>
+                        <MenuItem>
+                            <Link to="/device/list">设备管理</Link>
+                        </MenuItem>
+                        <MenuItem>
+                            <Link to="/device/type/list">设备类型管理</Link>
+                        </MenuItem>
                     </SubMenu>
                 </Menu>
             </aside>

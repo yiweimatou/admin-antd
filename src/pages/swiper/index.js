@@ -93,6 +93,10 @@ class Swiper extends Component {
             dataIndex: 'path',
             render: path => <img alt="img" src={path} width="45px" height="45px" />
         }, {
+            title: 'url',
+            key: 'url',
+            dataIndex: 'url'
+        }, {
             title: '状态',
             key: 'state',
             dataIndex: 'state',
